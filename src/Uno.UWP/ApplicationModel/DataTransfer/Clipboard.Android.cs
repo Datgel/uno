@@ -103,6 +103,16 @@ namespace Windows.ApplicationModel.DataTransfer
 			}
 		}
 
+		// On Android 12+ getPrimaryClip() shows the "pasted from your clipboard" toast for another app's clip;
+		// getPrimaryClipDescription() does not, and its MIME types are enough to know whether text is there.
+		static partial void ContainsTextPartial(ref bool? result)
+		{
+			if (ContextHelper.Current.GetSystemService(Context.ClipboardService) is ClipboardManager manager)
+			{
+				result = manager.PrimaryClipDescription?.HasMimeType("text/*") ?? false;
+			}
+		}
+
 		public static DataPackageView GetContent()
 		{
 			var dataPackage = new DataPackage();

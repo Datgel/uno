@@ -48,6 +48,10 @@ namespace Windows.ApplicationModel.DataTransfer
 			return dataPackage.GetView();
 		}
 
+		// Since iOS 16 reading UIPasteboard.String shows the "would like to paste" alert when another app put the
+		// text there; HasStrings answers the same question without reading the content, so it never prompts.
+		static partial void ContainsTextPartial(ref bool? result) => result = UIPasteboard.General.HasStrings;
+
 		public static void Clear()
 		{
 			UIPasteboard.General.Items = Array.Empty<NSDictionary>();

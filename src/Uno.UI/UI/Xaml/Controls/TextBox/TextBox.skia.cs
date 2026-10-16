@@ -228,8 +228,10 @@ public partial class TextBox : ITextSelectionGripperHost
 
 		try
 		{
-			var content = Clipboard.GetContent();
-			CanPasteClipboardContent = content?.Contains(StandardDataFormats.Text) ?? false;
+			// Ask whether text is there WITHOUT reading it: this runs whenever a text box is templated, focused or made
+			// editable, and reading the content shows the iOS paste alert / Android paste toast each time. The content
+			// is read only by PasteFromClipboard, i.e. when the user actually pastes.
+			CanPasteClipboardContent = Clipboard.ContainsText();
 		}
 		catch
 		{
