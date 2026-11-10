@@ -1,0 +1,13 @@
+<Project Sdk="Uno.Sdk">
+  <!-- Uno.Sdk version comes from ../global.json: 6.7.45 (Uno.WinUI 6.7.359) shows the delay, 6.7.30 (Uno.WinUI 6.7.135) does not. -->
+  <PropertyGroup>
+    <TargetFrameworks>net10.0-desktop</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <UnoSingleProject>true</UnoSingleProject>
+    <RootNamespace>ComboUiaRepro</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ApplicationTitle>ComboUiaRepro</ApplicationTitle>
+    <ApplicationId>com.example.combouiarepro</ApplicationId>
+    <UnoFeatures></UnoFeatures>
+  </PropertyGroup>
+</Project>
